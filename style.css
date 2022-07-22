@@ -1,0 +1,11 @@
+body, html{
+    height: 100%;
+}
+
+.bg {
+    background-image: url("https://images.unsplash.com/photo-1597764209036-35337a7ddacc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1113&q=80");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
