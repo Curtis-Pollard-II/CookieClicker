@@ -1,11 +1,51 @@
-body, html{
+body,
+html {
     height: 100%;
+    font-family: 'Londrina Solid', cursive;
 }
 
 .bg {
-    background-image: url("https://images.unsplash.com/photo-1597764209036-35337a7ddacc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1113&q=80");
+    background-image: url("https://www.nxtmine.com/wp-content/uploads/2021/09/Iron-Ore-Reserves-Market-2048x1228-1.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.bg-strong-brown {
+    background-color: #220901;
+}
+
+.bg-light-brown {
+    background-color: #621708;
+}
+
+.bg-orange-red {
+    background-color: #941B0C;
+
+}
+
+.bg-orange-brown {
+    background-color: #BC3908;
+
+}
+
+.onclicktransfrom {
+    transition: transform 1s;
+
+}
+
+.onclicktransfrom:hover {
+    transform: translateY(3em);
+    filter: drop-shadow(0 -6mm 4mm #056ceb) brightness(1.15);
+
+}
+
+button {
+    background-color: #056ceb;
+}
+
+button:hover {
+    box-shadow: 0 12px 16px 0 rgb(30, 0, 255), 0 17px 50px 0 rgb(30, 0, 255);
+    border-radius: 8px;
 }

@@ -1,5 +1,18 @@
 let iron = 0
 
+
+let generateQuote = [
+    'People say nothing is impossible, but I do nothing every day.', 'You can not have everything. Where would you put it?', 'If you think you are too small to make a difference, try sleeping with a mosquito.', 'Think like a proton. Always positive.', 'Be happy ... it drives people crazy.',
+];
+
+let randomQuote = generateQuote[Math.floor(Math.random() * generateQuote.length)];
+
+function quote() {
+    alert(randomQuote)
+}
+
+
+
 let clickUpgrades = {
     miners: {
         price: 10,
@@ -12,16 +25,31 @@ let automaticUpgrades = {
     electromagnetic: {
         price: 20,
         quantity: 0,
-        multiplier: 20
+        multiplier: 20,
+        level: 0
     }
 };
 
+let thunder = {
+    bolts: {
+        price: 1000,
+        quantity: 0,
+    }
+}
+
+let click = {
+    quotes: {
+        quantity: 0,
+        price: 5000,
+    }
+}
+
 
 function mine() {
-    iron++ 
-    for(let key in clickUpgrades) {
+    iron++
+    for (let key in clickUpgrades) {
         let upgrade = clickUpgrades[key]
-        iron += upgrade.quantity * upgrade.multiplier 
+        iron += upgrade.quantity * upgrade.multiplier
     }
     drawTotal()
 }
@@ -29,7 +57,7 @@ function mine() {
 function drawTotal() {
     let totalTemplate = ""
     totalTemplate += `
-        <div class="bg-dark p-2 text-white text-end fs-5">Iron Count = ${iron}</div>
+        <h1 class="bg-dark p-2 bg-orange-brown text-center text-white fs-1">Iron = ${iron}</h1>
     `
     let totalElm = document.getElementById('iron-total')
     totalElm.innerHTML = totalTemplate
@@ -39,42 +67,44 @@ drawTotal()
 
 
 // Miner Functions
- function drawMiners() {
+function drawMiners() {
     let minerTemplate = ""
     minerTemplate += `
-        <div class="bg-light p-2 text-center text-dark fs-5"># of miners = ${clickUpgrades.miners.quantity}</div>
+        <p class=" col-7 rounded mdi mdi-magnet text-center bg-strong-brown text-white p-2 text-center fs-3"><span class="ps-4">Magnets: ${clickUpgrades.miners.quantity}</span></p>
     `
     let minerElm = document.getElementById('miners')
     minerElm.innerHTML = minerTemplate
 }
 drawMiners()
 
- function buyMiners() {
+function buyMiners() {
     if (iron >= 10
     ) {
         iron -= 10
         clickUpgrades.miners.quantity += 1
         clickUpgrades.miners.price += 1
     }
-    drawTotal()
+
     drawMiners()
     drawMinerCost()
- }
+    drawIronPerClick()
+    drawTotal()
+}
 
 
 
 
 
 // Automatic Upgrade functions
- function collectAutoUpgrades () {
-    for(let key in automaticUpgrades){
+function collectAutoUpgrades() {
+    for (let key in automaticUpgrades) {
         let automatic = automaticUpgrades[key]
         iron += automatic.quantity * automatic.multiplier
     }
     drawElectromagnetic()
- }
+}
 
- function buyElectromagnetic() {
+function buyElectromagnetic() {
     if (iron >= 20
     ) {
         iron -= 20
@@ -84,12 +114,13 @@ drawMiners()
     drawTotal()
     drawElectromagnetic()
     drawElectromagneticCost()
- }
+    drawAutoIronPer3Sec()
+}
 
- function drawElectromagnetic() {
+function drawElectromagnetic() {
     let electricTemplate = ""
     electricTemplate += `
-        <div class="bg-light p-2 text-center text-dark fs-5"># of volts = ${automaticUpgrades.electromagnetic.quantity}</div>
+        <p class=" col-7 rounded bg-strong-brown text-white p-2 text-center fs-3 mdi mdi-lightning-bolt"><span class="ps-4">Volts : ${automaticUpgrades.electromagnetic.quantity}</span></p>
     `
     let electricElm = document.getElementById('electric')
     electricElm.innerHTML = electricTemplate
@@ -99,17 +130,84 @@ drawElectromagnetic()
 
 setInterval(collectAutoUpgrades, 3000)
 
+function buyThunderBolt() {
+    let double = 2
+    let ten = 10
+    if (iron >= thunder.bolts.price
+    ) {
+        iron *= double,
+            iron -= thunder.bolts.price,
+            thunder.bolts.quantity += 1,
+            thunder.bolts.price *= ten
+    }
+    drawTotal()
+    drawThunderBoltCost()
+    drawThunderBolts()
+}
+
+function drawThunderBolts() {
+    let thunderBoltTemplate = ""
+    thunderBoltTemplate += `
+        <p class="offset-5 col-7 rounded bg-strong-brown text-white p-2 text-center fs-3 "><span> ⚡Thunder Bolts⚡: ${thunder.bolts.quantity}</span></p>
+        `
+    let thunderBoltElm = document.getElementById('thunder-bolt')
+    thunderBoltElm.innerHTML = thunderBoltTemplate
+}
+drawThunderBolts()
+
+function drawThunderBoltCost() {
+    let thunderBoltCostTemplate = ""
+    thunderBoltCostTemplate += `
+        <p class="offset-7 col-5 rounded text-center text-white p-2 bg-light-brown fs-5">Cost: ${thunder.bolts.price}</p>
+        `
+    let thunderBoltCostElm = document.getElementById('thunder-bolt-cost')
+    thunderBoltCostElm.innerHTML = thunderBoltCostTemplate
+}
+drawThunderBoltCost()
+
+function buyClickQuotes() {
+    if (iron >= click.quotes.price
+    ) {
+        iron -= click.quotes.price,
+            click.quotes.price *= 5
+            click.quotes.quantity +=1
+    }
+    drawTotal()
+    drawClickQuotesPrice()
+    drawClickQuotes()
+    quote()
+}
+
+
+function drawClickQuotes() {
+    let drawClickQuotesTemplate = ""
+    drawClickQuotesTemplate += `
+    <p class=" offset-5 col-7 rounded bg-strong-brown text-white p-2 text-center fs-3 "><span> Click Quotes: ${click.quotes.quantity}</span></p>
+    `
+    let drawClickQuotesElm = document.getElementById('click-quotes')
+    drawClickQuotesElm.innerHTML = drawClickQuotesTemplate
+}
+drawClickQuotes()
+
+function drawClickQuotesPrice() {
+    let drawClickQuotesPriceTemplate = ""
+    drawClickQuotesPriceTemplate += `
+        <p class="offset-7 col-5 rounded text-center text-white p-2 bg-light-brown fs-5">Cost: ${click.quotes.price}</p>
+    `
+    let drawClickQuotesPriceElm = document.getElementById('click-quotes-price')
+    drawClickQuotesPriceElm.innerHTML = drawClickQuotesPriceTemplate
+}
+drawClickQuotesPrice()
 
 
 
 
 
-
-// Displaying Prices
+// Displaying Items
 function drawMinerCost() {
     let minerCostTemplate = ""
     minerCostTemplate += `
-        <p class=" offset-4 col-4 bg-info p-2 fs-5">Miner costs: ${clickUpgrades.miners.price}</p>
+        <p class=" col-5 bg-light-brown text-white text-center rounded p-2 fs-5">Cost: ${clickUpgrades.miners.price}</p>
     `
     let minerCostElm = document.getElementById('miner-cost')
     minerCostElm.innerHTML = minerCostTemplate
@@ -119,12 +217,32 @@ drawMinerCost()
 function drawElectromagneticCost() {
     let voltageCostTemplate = ""
     voltageCostTemplate += `
-        <p class=" offset-4 col-4 bg-info p-2 fs-5">voltage costs: ${automaticUpgrades.electromagnetic.price}</p>
+        <p class=" col-5 rounded text-center bg-light-brown text-white p-2 fs-5">Cost: ${automaticUpgrades.electromagnetic.price}</p>
     `
     let voltageCostElm = document.getElementById('electromagnetic-cost')
     voltageCostElm.innerHTML = voltageCostTemplate
 }
 drawElectromagneticCost()
+
+function drawIronPerClick() {
+    let ironPerClickTemplate = ""
+    ironPerClickTemplate += `
+        <p class=" offset-4 col-6 bg-orange-brown rounded text-center text-white p-2 fs-5">Iron Per Click: ${clickUpgrades.miners.quantity + 1}</p>    
+        `
+    let ironPerClick = document.getElementById('iron-per-click')
+    ironPerClick.innerHTML = ironPerClickTemplate
+}
+drawIronPerClick()
+
+function drawAutoIronPer3Sec() {
+    let autoIronPer3SecTemplate = ""
+    autoIronPer3SecTemplate += `
+        <p class=" offset-4 col-6 bg-orange-brown rounded text-white text-center p-2 fs-5">Per 3 Seconds: ${automaticUpgrades.electromagnetic.quantity * automaticUpgrades.electromagnetic.multiplier}</p>    
+        `
+    let autoIronPer3Sec = document.getElementById('auto-iron-per-3-sec')
+    autoIronPer3Sec.innerHTML = autoIronPer3SecTemplate
+}
+drawAutoIronPer3Sec()
 
 
 

@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="bg">
@@ -18,33 +23,85 @@
         <!-- TOTAL IRON -->
         <!-- <div class="bg-dark p-2 text-white text-end fs-5">Iron Count = </div> -->
     </header>
-    <main>
-        <div class="row">
-            <button class=" col-2 btn btn-primary" onclick="buyMiners()">Buy Miner</button>
-            <div id="miner-cost" class="row">
+    <main class="p-2">
+
+        <section class="row  container-fluid p-5">
+
+            <div class="col-4 p-2">
+
+                <section class="row" id="miners">
+                    <!-- Total Number of Miners -->
+                    <!-- <div class="bg-light p-2 text-center text-dark fs-5"># of miners = </div> -->
+                </section>
+                <div class="row pb-5">
+                    <div id="miner-cost" class="row">
+                        <!-- <p class=" offset-4 col-4 bg-info p-2 fs-5">Miner costs: </p> -->
+                    </div>
+                    <button class=" col-3 text-white fs-5 mdi mdi-magnet" onclick="buyMiners()">Buy
+                    </button>
+                </div>
+
+                <section class="row pt-5" id="electric">
+
+                </section>
+                <div id="electromagnetic-cost" class="row">
+                    <!-- <p class=" offset-4 col-4 bg-info p-2 fs-5">voltage costs: </p> -->
+                </div>
+                <button class=" col-3 text-white fs-5 mdi mdi-lightning-bolt"
+                    onclick="buyElectromagnetic()">Buy </button>
+
+
+            </div>
+            <div class="col-4">
+                <div id="iron-per-click" class="row">
                 <!-- <p class=" offset-4 col-4 bg-info p-2 fs-5">Miner costs: </p> -->
+                </div>
+
+                <div id="auto-iron-per-3-sec" class="row">
+                <!-- <p class=" offset-4 col-4 bg-info p-2 fs-5">Miner costs: </p> -->
+                </div>
+
+                
+
+                <div class="row">
+                    <img id="big-magnet" class="offset-2 col-10 image-fluid shadow-4 onclicktransfrom"
+                    src="https://cdn.pixabay.com/photo/2013/07/12/14/48/electromagnet-148829_640.png"
+                    onclick="mine()"></img>
+                </div>
+
+                
             </div>
-        </div>
+            <div class="col-4">
+                    <div id="thunder-bolt" class="row" >
+                        <!-- column -->
+                        <!-- <p class=" offset-5 col-7 rounded bg-strong-brown text-white p-2 text-center fs-3 "><span> ⚡Thunder Bolts⚡: </span></p> -->
+                    </div>
 
-        <section class="row" id="miners">
-            <!-- Total Number of Miners -->
-            <!-- <div class="bg-light p-2 text-center text-dark fs-5"># of miners = </div> -->
-        </section>
+                    <div class="row" id="thunder-bolt-cost">
+                        <!-- <p class="offset-7 col-5 rounded text-center text-white p-2 bg-light-brown fs-5">Cost:</p> -->
+                    </div>
 
-        <button class=" col-2 btn btn-primary" onclick="buyElectromagnetic()">Buy Voltage</button>
-            <div id="electromagnetic-cost" class="row">
-            <!-- <p class=" offset-4 col-4 bg-info p-2 fs-5">voltage costs: </p> -->
+                    <div class="pb-5"><button class=" offset-9 col-3 text-white fs-5"
+                    onclick="buyThunderBolt()">⚡Buy⚡</button></div>
+
+                    <div class="row pt-5" id="click-quotes">
+                        <!-- column -->
+                        <!-- <p class=" offset-5 col-7 rounded bg-strong-brown text-white p-2 text-center fs-3 "><span> Clicking Quotes: </span></p> -->
+                    </div>
+
+                    <div class="row" id="click-quotes-price">
+                        <!-- <p class="offset-7 col-5 rounded text-center text-white p-2 bg-light-brown fs-5">Cost:</p> -->
+                    </div>
+
+                    <div class=""><button class=" offset-9 col-3 text-white fs-5"
+                    onclick="buyClickQuotes()">Buy</button></div>
             </div>
-        <section class="row" id="electric">
-
         </section>
-
-        <div class="row">
-            <img class="offset-5 col-2 image-fluid" src="https://cdn-icons-png.flaticon.com/512/17/17352.png"
-                onclick="mine()"></img>
-        </div>
-
     </main>
+
+    <footer>
+        
+    </footer>
 
     <script src="app.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
