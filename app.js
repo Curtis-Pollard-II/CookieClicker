@@ -1,16 +1,14 @@
-let iron = 0
+let iron = 1000000
 
 
 let generateQuote = [
     'People say nothing is impossible, but I do nothing every day.', 'You can not have everything. Where would you put it?', 'If you think you are too small to make a difference, try sleeping with a mosquito.', 'Think like a proton. Always positive.', 'Be happy ... it drives people crazy.',
 ];
 
-let randomQuote = generateQuote[Math.floor(Math.random() * generateQuote.length)];
-
-function quote() {
-    alert(randomQuote)
+function quote(generateQuote)
+{return generateQuote[Math.floor(Math.random() * generateQuote.length)];
 }
-
+console.log(quote(generateQuote));
 
 
 let clickUpgrades = {
@@ -169,13 +167,15 @@ function buyClickQuotes() {
     if (iron >= click.quotes.price
     ) {
         iron -= click.quotes.price,
-            click.quotes.price *= 5
-            click.quotes.quantity +=1
+        click.quotes.price *= 5
+        click.quotes.quantity += 1
+        alert(quote(generateQuote))
+        
     }
     drawTotal()
     drawClickQuotesPrice()
     drawClickQuotes()
-    quote()
+    
 }
 
 
